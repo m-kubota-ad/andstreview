@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>andST 2025年 あなたのまとめ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Interフォント (Tailwindのデフォルトに合わせる) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Noto Sans JPを優先しつつ、Interをフォールバックに */
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #f4f7f6; /* 少し色がついた背景 */
+        }
+        
+        /* カスタムブランドカラー */
+        :root {
+            --brand-primary: #005f73; /* 濃い青緑 */
+            --brand-secondary: #0a9396; /* 明るい青緑 */
+            --brand-accent: #e9d8a6; /* アクセントのゴールド */
+            --brand-text: #222222;
+        }
+        
+        /* タイトルのカスタム */
+        .title-fancy {
+            font-weight: 900;
+            color: var(--brand-primary);
+        }
+        
+        /* カードのスタイル */
+        .stat-card {
+            background-color: white;
+            border-radius: 16px; /* 強い角丸 */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            overflow: hidden; /* 画像のため */
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        /* グラフバーのアニメーション */
+        .bar-chart-bar {
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: growBar 1.5s forwards ease-out;
+        }
+
+        @keyframes growBar {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        /* シェアボタン */
+        .share-btn {
+            border-radius: 9999px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            padding: 12px 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .share-btn-x {
+            background-color: #1DA1F2; /* Twitter Blue */
+            color: white;
+        }
+        .share-btn-x:hover {
+            background-color: #0c84d0;
+        }
+        .share-btn-line {
+            background-color: #06C755; /* LINE Green */
+            color: white;
+        }
+        .share-btn-line:hover {
+            background-color: #05a545;
+        }
+        
+        /* 背景グラデーション */
+        .hero-bg {
+             background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+        }
+        
+        /* アニメーション：フェードイン */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards ease-out;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* アニメーション遅延 */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-700 { animation-delay: 0.7s; }
+
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="max-w-3xl mx-auto min-h-screen">
+
+        <!-- 1. イントロダクション -->
+        <section class="hero-bg text-white p-8 md:p-12 rounded-b-3xl shadow-lg text-center min-h-[40vh] flex flex-col justify-center items-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 fade-in">
+                飯塚 将司さんの<br> <!-- 名前を変更 -->
+                <span style="color: var(--brand-accent);" class="text-5xl md:text-7xl">2025年</span>
+            </h1>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 fade-in delay-100" style="font-family: 'Inter', sans-serif;">andST 2025 REVIEW</h2>
+            <p class="text-lg md:text-xl fade-in delay-200">
+                2025年もandSTをご利用いただき、<br class="md:hidden">誠にありがとうございました。
+            </p>
+            <p class="text-lg md:text-xl mt-2 fade-in delay-300">
+                あなたとandSTが歩んだ1年間を、<br>一緒に振り返ってみましょう。
+            </p>
+            <div class="mt-8 fade-in delay-500">
+                <!-- ion-iconをlucideに変更 -->
+                <i data-lucide="arrow-down-circle" class="text-5xl animate-bounce w-14 h-14"></i>
+            </div>
+        </section>
+
+        <div class="p-4 md:p-8 space-y-8 md:space-y-12">
+
+            <!-- 2. ハイライト（サマリー） -->
+            <section class="stat-card p-6 md:p-8 text-center fade-in delay-300">
+                <h2 class="title-fancy text-2xl md:text-3xl mb-6">2025年ハイライト</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    <div class="bg-gray-100 p-4 rounded-xl">
+                        <p class="text-sm text-gray-600">年間購入総額</p>
+                        <p class="text-xl md:text-2xl font-bold" style="color: var(--brand-secondary);">¥ 158,400</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-xl">
+                        <p class="text-sm text-gray-600">購入点数</p>
+                        <p class="text-xl md:text-2xl font-bold" style="color: var(--brand-secondary);">32点</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-xl">
+                        <p class="text-sm text-gray-600">年間訪問</p>
+                        <p class="text-xl md:text-2xl font-bold" style="color: var(--brand-secondary);">184回</p>
+                        <p class="text-xs text-gray-500">（店舗・EC合計）</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-xl">
+                        <p class="text-sm text-gray-600">andSTメンバー歴</p>
+                        <p class="text-xl md:text-2xl font-bold" style="color: var(--brand-secondary);">972日目</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 称号バッジ -->
+            <section class="stat-card p-6 md:p-8 text-center fade-in delay-500" style="background: linear-gradient(135deg, var(--brand-accent), #fef5d8);">
+                <!-- ion-iconをlucideに変更 -->
+                <div class="flex justify-center mb-2">
+                    <i data-lucide="ribbon" class="w-14 h-14" style="color: var(--brand-primary); stroke-width: 2;"></i>
+                </div>
+                <h3 class="text-xl font-bold mt-2" style="color: var(--brand-primary);">2025年の称号</h3>
+                <p class="text-4xl font-extrabold mt-1" style="color: var(--brand-primary);">トレンドセッター</p>
+                <p class="mt-2 text-gray-700">あなたは新作アイテムを購入した上位10%のメンバーです！</p>
+            </section>
+
+            <!-- 3. 購買傾向（カテゴリ） -->
+            <section class="stat-card p-6 md:p-8 fade-in delay-700">
+                <h2 class="title-fancy text-2xl md:text-3xl mb-6 text-center">あなたの好きが詰まった場所</h2>
+                <p class="text-center text-gray-600 mb-6">2025年、あなたが最も愛用したのはこのカテゴリでした。</p>
+                
+                <div class="space-y-5">
+                    <!-- 1位 -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-bold text-lg" style="color: var(--brand-secondary);">1. トップス (45%)</span>
+                            <span class="text-sm text-gray-500">14点</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-4">
+                            <div class="bar-chart-bar h-4 rounded-full" style="width: 45%; background-color: var(--brand-secondary); animation-delay: 0.8s;"></div>
+                        </div>
+                    </div>
+                    <!-- 2位 -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-bold text-lg">2. パンツ (25%)</span>
+                            <span class="text-sm text-gray-500">8点</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-4">
+                            <div class="bar-chart-bar h-4 rounded-full bg-gray-400" style="width: 25%; animation-delay: 1.0s;"></div>
+                        </div>
+                    </div>
+                    <!-- 3位 -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-bold text-lg">3. グッズ (15%)</span>
+                            <span class="text-sm text-gray-500">5点</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-4">
+                            <div class="bar-chart-bar h-4 rounded-full bg-gray-300" style="width: 15%; animation-delay: 1.2s;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 購買傾向（ベストアイテム） -->
+            <section class="stat-card p-0 fade-in delay-300">
+                <div class="p-6 md:p-8">
+                    <h2 class="title-fancy text-2xl md:text-3xl mb-4 text-center">2025年 あなたのベストバイ</h2>
+                    <p class="text-center text-gray-600 mb-6">このアイテムが、あなたの2025年を象徴する一着です。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 items-center">
+                    <div class="p-4 md:p-8 md:order-2">
+                        <h3 class="text-xl font-bold">エアリーテック・リバーシブルブルゾン</h3>
+                        <p class="text-gray-600 mt-2">購入日: 2025年10月5日</p>
+                        <p class="text-lg font-bold mt-2" style="color: var(--brand-secondary);">¥ 12,800</p>
+                        <p class="mt-4 text-gray-700">
+                            機能性とデザイン性を兼ね備えたこのアイテム。店舗で試着し、ECで購入されましたね。
+                            あなたは「ブラック」と「カーキ」で30分悩んだ末、ブラックを選びました！
+                        </p>
+                    </div>
+                    <div class="md:order-1">
+                        <!-- ダミー画像 -->
+                        <img src="https://placehold.co/600x600/005f73/white?text=BEST+BUY" alt="ベストバイアイテム" class="w-full h-auto object-cover md:rounded-l-2xl">
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ★新規追加★ 3. ベストブランド -->
+            <section class="stat-card p-6 md:p-8 fade-in delay-500">
+                <h2 class="title-fancy text-2xl md:text-3xl mb-6 text-center">あなたのベストブランド</h2>
+                <p class="text-center text-gray-600 mb-6">数あるブランドの中から、あなたが最も愛したのは…</p>
+                <div class="text-center mb-6">
+                    <p class="text-lg text-gray-500">1位</p>
+                    <p class="text-4xl font-extrabold" style="color: var(--brand-secondary);">GLOBAL WORK</p>
+                    <p class="text-lg font-bold">10点購入</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="bg-gray-100 p-4 rounded-xl">
+                        <p class="text-sm text-gray-500">2位</p>
+                        <p class="text-xl font-bold">niko and ...</p>
+                        <p class="text-sm">5点</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-xl">
+                        <p class="text-sm text-gray-500">3位</p>
+                        <p class="text-xl font-bold">RAGEBLUE</p>
+                        <p class="text-sm">4点</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-center text-gray-700">あなたは2025年で合計 <span class="font-bold text-lg" style="color: var(--brand-primary);">8つ</span> のブランドをチェックしました！</p>
+            </section>
+
+            <!-- 3. 利用店舗・活動時期 -->
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- よく行く場所 (少し変更) -->
+                <div class="stat-card p-6 md:p-8 fade-in delay-500">
+                    <h2 class="title-fancy text-xl md:text-2xl mb-4 text-center">あなたの活動拠点</h2>
+                    <p class="text-center text-gray-600 mb-4">
+                        2025年は <span class="font-bold text-lg" style="color: var(--brand-primary);">3つ</span> の店舗とECサイトを巡回！
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-lg">
+                            <!-- ion-iconをlucideに変更 -->
+                            <i data-lucide="store" class="mr-3 w-6 h-6" style="color: var(--brand-secondary);"></i>
+                            <span class="font-bold">1. 新宿店</span> (12回)
+                        </li>
+                        <li class="flex items-center text-lg">
+                            <!-- ion-iconをlucideに変更 -->
+                            <i data-lucide="laptop" class="mr-3 w-6 h-6" style="color: var(--brand-secondary);"></i>
+                            <span class="font-bold">2. ECサイト</span> (9回購入)
+                        </li>
+                        <li class="flex items-center text-lg">
+                            <!-- ion-iconをlucideに変更 -->
+                            <i data-lucide="store" class="mr-3 w-6 h-6 text-gray-400"></i>
+                            <span class="font-bold">3. 池袋店</span> (3回)
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 活動的な月 -->
+                <div class="stat-card p-6 md:p-8 fade-in delay-700">
+                    <h2 class="title-fancy text-xl md:text-2xl mb-4 text-center">活動的な月</h2>
+                    <p class="text-center text-5xl font-extrabold" style="color: var(--brand-secondary);">10月</p>
+                    <p class="text-center text-gray-600 mt-2">
+                        秋の訪れと共に、あなたの物欲もピークに！<br>
+                        この月に年間支出の30%を使いました。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 4. 行動履歴 -->
+            <section class="stat-card p-6 md:p-8 fade-in delay-300">
+                <h2 class="title-fancy text-2xl md:text-3xl mb-6 text-center">andSTでの軌跡</h2>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                        <!-- ion-iconをlucideに変更 -->
+                        <i data-lucide="heart" class="w-10 h-10 text-red-500 inline-block"></i>
+                        <p class="text-2xl font-bold mt-2">128</p>
+                        <p class="text-sm text-gray-600">お気に入り</p>
+                    </div>
+                    <div>
+                        <!-- ion-iconをlucideに変更 -->
+                        <i data-lucide="message-square" class="w-10 h-10 text-blue-500 inline-block"></i>
+                        <p class="text-2xl font-bold mt-2">14</p>
+                        <p class="text-sm text-gray-600">レビュー投稿</p>
+                    </div>
+                    <div>
+                        <!-- ion-iconをlucideに変更 -->
+                        <i data-lucide="tag" class="w-10 h-10 text-green-500 inline-block"></i>
+                        <p class="text-2xl font-bold mt-2">¥ 8,500</p>
+                        <p class="text-sm text-gray-600">クーポン節約額</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ★新規追加★ 4. 行動スタイル -->
+            <section class="stat-card p-6 md:p-8 fade-in delay-500">
+                <h2 class="title-fancy text-2xl md:text-3xl mb-6 text-center">あなたの活動スタイル</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-100 p-5 rounded-xl text-center">
+                        <i data-lucide="moon" class="w-10 h-10 text-indigo-500 inline-block mb-2"></i>
+                        <h3 class="text-lg font-bold">夜のショッパー</h3>
+                        <p class="text-gray-700 mt-1">ECサイト訪問の <span class="font-bold text-xl" style="color: var(--brand-primary);">45%</span> が21時以降！<br>
+                        おやすみ前のチェックが日課ですね。</p>
+                    </div>
+                    <div class="bg-gray-100 p-5 rounded-xl text-center">
+                        <i data-lucide="route" class="w-10 h-10 text-green-600 inline-block mb-2"></i>
+                        <h3 class="text-lg font-bold">ハイブリッド型</h3>
+                        <p class="text-gray-700 mt-1">「ECで下見、店舗で購入」<br>
+                        「店舗で試着、ECで購入」<br>
+                        どちらも使いこなすスマート派！</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 5. あなたのスタイル -->
+            <section class="stat-card p-6 md:p-8 fade-in delay-500">
+                <h2 class="title-fancy text-2xl md:text-3xl mb-6 text-center">あなたのスタイルタグ</h2>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-full text-lg">#キレイめカジュアル</span>
+                    <span class="bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-full text-lg">#機能性重視</span>
+                    <span class="bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-full text-lg">#モノトーン</span>
+                </div>
+                <div class="mt-6 text-center bg-gray-100 p-4 rounded-xl">
+                    <h3 class="font-bold">あなたへのおすすめ</h3>
+                    <p class="text-gray-700 mt-1">「#機能性重視」のあなたには、こちらの新作テックパンツがおすすめです！</p>
+                    <a href="#" class="inline-block mt-3 text-white font-bold py-2 px-4 rounded-lg transition" style="background-color: var(--brand-secondary); hover:background-color: var(--brand-primary);">
+                        新作をチェック
+                    </a>
+                </div>
+            </section>
+
+            <!-- 6. エンディングとSNSシェア -->
+            <section class="text-center p-6 md:p-10 fade-in delay-700">
+                <h2 class="title-fancy text-3xl md:text-4xl mb-4">2026年も、<br>andSTと。</h2>
+                <p class="text-lg text-gray-700 mb-8">
+                    あなたの毎日が、もっと豊かになるような出会いを。<br>
+                    2026年も、店舗とECサイトで<br class="md:hidden">お待ちしております。
+                </p>
+                
+                <h3 class="text-xl font-bold mb-4">あなたの2025年をシェアしよう！</h3>
+                <div class="flex justify-center gap-4">
+                    <button class="share-btn share-btn-x" onclick="share('x')">
+                        <!-- ion-iconをlucideに変更 -->
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                        Xでシェア
+                    </button>
+                    <button class="share-btn share-btn-line" onclick="share('line')">
+                        <!-- ion-iconをlucideに変更 (LINEロゴの代替) -->
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        LINEでシェア
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // フェードインアニメーションの監視 (簡易版)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lucideアイコンの初期化を追加
+            lucide.createIcons();
+
+            const elements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elements.forEach(el => {
+                // アニメーションを一旦停止し、可視領域に入ったら再生
+                el.style.animationPlayState = 'paused'; 
+                observer.observe(el);
+            });
+            
+            // ページロード時にすでに表示されている要素は即時再生
+            // (今回は簡易化のため、スクロールで発火する想定)
+            // ただし、ヒーローエリアのものは即時再生させたい
+            document.querySelectorAll('.hero-bg .fade-in').forEach(el => {
+                el.style.animationPlayState = 'running';
+                observer.unobserve(el);
+            });
+        });
+
+        // SNSシェア機能（ダミー）
+        function share(sns) {
+            const url = 'https://andst.jp/replay/2025/user123'; // 実際のURL
+            const text = 'これが私のandST 2025年まとめ！あなたは #andST #andST2025レビュー';
+            
+            let shareUrl = '';
+            
+            if (sns === 'x') {
+                shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            } else if (sns === 'line') {
+                shareUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text + ' ' + url)}`;
+            }
+            
+            // モックアップのためアラート表示に変更（実際はwindow.open）
+            // window.open(shareUrl, '_blank');
+            console.log('Sharing to ' + sns + ': ' + shareUrl);
+            alert(sns + 'でシェアします（モックアップ）');
+        }
+    </script>
+
+</body>
+</html>
